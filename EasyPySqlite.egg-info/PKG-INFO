@@ -1,0 +1,15 @@
+Metadata-Version: 2.1
+Name: EasyPySqlite
+Version: 0.0.4
+Summary: Simplify Sqlite operations
+Home-page: https://github.com/mohaelder/pysqlite
+Author: Yasushi Oh
+Author-email: yoh@ucsd.edu
+License: MIT
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Description-Content-Type: text/markdown

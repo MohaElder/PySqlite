@@ -27,17 +27,17 @@ class PyCursor:
         easily.
 
     Fields:
-        db_name: the name of the cursor to operate at first
+        db_name: the path of the databse to operate
     """
     connection = None  # sqlite connection
     cursor = None  # sqlite cursor
-    db_path = None  # active database's path
+    db_name = None  # active database's path
 
-    def __init__(self, sqlite_path, db_path):
+    def __init__(self, db_path, db_name):
         """Initializes the cursor.
 
-        Initializes the cursor by initializing db_path and
-            calling connect with db_path.
+        Initializes the cursor by initializing db_name and
+            calling connect with db_name.
 
         Args:
             db_name: the database's name to connect.
@@ -49,14 +49,13 @@ class PyCursor:
             None
         """
 
-        self.db_path = db_path
-        self.sqlite_path = sqlite_path
+        self.db_name = db_name.upper()
 
-        print("Successfully initialized with sqlite_path: " + sqlite_path + " and db path: " + db_path)
+        print("Successfully initialized with db_name: " + db_name)
 
-        self.connect()
+        self.connect(db_path)
 
-    def connect(self):
+    def connect(self, db_path):
         """connects the cursor to another database
 
         connects the cursor to another database by reinitializing
@@ -73,7 +72,7 @@ class PyCursor:
         """
         try:
             self.connection = sqlite3.connect(
-                self.sqlite_path + self.db_path, check_same_thread=False)
+                db_path + self.db_name.lower() + ".db", check_same_thread=False)
             self.cursor = self.connection.cursor()
         except:
             print("db path not found!")
@@ -191,7 +190,7 @@ class PyCursor:
         Raises:
             Error: prop not found or value invalid
         """
-        self.run("INSERT INTO " + self.db_name + " (" + prop + ") " +
+        self.run("INSERT INTO " + self.db_name + " (" + prop.upper() + ") " +
                  "VALUES (" + values + ")")
         return "Success"
 
